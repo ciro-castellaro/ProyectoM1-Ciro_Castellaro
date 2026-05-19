@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./app.js" defer></script>
+    <title>Paletas Colorfly</title>
+</head>
+<body>
+    <div class="contenedor">
+    
+    <header class="header">
+        <img class="logo" src="./assets/img/logo_colorfly.png" alt="Logo de la empresa Colorfly">
+        <h1>Generador de paletas aleatorias</h1>
+    </header>
+
+    <main class="contenido-principal">
+
+        <section class="controles">
+            <div class="grupo-controles">
+                <div class="grupo-radio">
+                    <p class="grupo-titulo">Tipo de código</p>
+
+                    <input type="radio" name="tipo-codigo" id="hsl" value="hsl" checked>
+                    <label for="hsl">HSL</label>
+
+                    <input type="radio" name="tipo-codigo" id="hex" value="hex">
+                    <label for="hex">HEX</label>
+                </div>
+                <div class="grupo-radio">
+                    <p class="grupo-titulo">Tamaño de paleta</p>
+
+                    <input type="radio" name="tamano-paleta" id="seis" value="6" checked> <!--checked para que chequee la casilla primero, como primera opcion-->
+                    <label for="seis">6</label>
+
+                    <input type="radio" name="tamano-paleta" id="ocho" value="8">
+                    <label for="ocho">8</label>
+
+                    <input type="radio" name="tamano-paleta" id="nueve" value="9">
+                    <label for="nueve">9</label>
+                </div>
+                <button class="boton-generar" type="button">Generar paleta</button>
+            </div>
+
+        </section>
+
+        <section class="paletas" id="paletas">
+            <!--paleta generada va aqui-->
+        </section>
+
+        <section class="paletas-guardadas">
+            <!-- paletas guardadas -->
+        </section>
+
+    </main>
+
+    <footer class="footer-flycolor">
+        <p> © Colorfly Studio 2026 - Todos los derechos reservados</p>
+    </footer>
+
+    </div>
+
+</body>
+
+</html>
