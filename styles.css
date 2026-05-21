@@ -1,9 +1,43 @@
+/* VAR-COLORES */
+:root {
+    /* Fondos */
+    --fondo-negro: hsl(220, 20%, 10%);
+
+
+    /* Texto */
+    --texto-blanco: hsl(0, 0%, 100%);
+    --texto-negro: hsl(222, 30%, 12%);
+    --texto-gris: hsl(220, 12%, 45%);
+
+    /* Acentos*/
+    --acento-azul: hsl(210, 100%, 55%);
+    --acento-azul-oscuro: hsl(210, 100%, 45%);
+    --acento-cyan:hsl(200, 35%, 45%);
+    --acento-gris: hsl(220, 4%, 42%);
+    --acento-rosa:hsl(340, 70%, 55%);
+    --acento-verde:hsl(150, 40%, 40%); 
+    --acento-amarillo:hsl(40, 80%, 55%);
+
+    /* UI */
+    --borde-hueso: hsl(220, 20%, 90%);
+    --borde-azul-oscuro: hsla(230, 35%, 20%);
+
+    /* Estados */
+    --exito: hsl(145, 65%, 45%);
+}
+
 /* RESET */
 *, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+/* BODY */
+body{
+    background-color: var(--fondo-negro);
+}
+
 
 /* CONTENEDOR */
 .contenedor {
@@ -23,29 +57,6 @@
     src: url('./assets/fonts/Roboto_Mono/RobotoMono-VariableFont_wght.ttf');
 }
 
-/* VAR-COLORES */
-:root {
-    /* Fondos */
-    --fondo: hsl(0, 0%, 100%);
-    --fondo-oscuro: hsl(210, 25%, 96%);
-
-    /* Texto */
-    --texto-negro: hsl(222, 30%, 12%);
-    --texto-gris: hsl(220, 12%, 45%);
-
-    /* Acentos*/
-    --acento-celeste: hsl(195, 95%, 55%);
-    --acento-violeta: hsl(265, 85%, 65%);
-    --acento-rosa: hsl(330, 90%, 65%);
-
-    /* UI */
-    --borde-hueso: hsl(220, 20%, 90%);
-    --sombra-gris-oscuro: hsla(220, 40%, 20%, 0.08);
-
-    /* Estados */
-    --exito: hsl(145, 65%, 45%);
-}
-
 /* LOGO COLORFLY */
 .logo{
     width: 12rem;
@@ -55,6 +66,8 @@
 /* H1 */
 h1{
     font-family: "archivo-black";
+    font-size: 3.5rem;
+    color: var(--acento-azul);
     text-align: center;
     padding: 1.5rem 0 0.5rem 0;
 }
@@ -69,13 +82,14 @@ h1{
 
 /* CONTROLES */
 .grupo-controles {
+    color: var(--texto-blanco);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 2rem;        /* ← esto es lo que faltaba */
+    gap: 2rem;       
     padding: 1rem 2rem;
-    flex-wrap: wrap;    /* por si la pantalla es chica */
+    flex-wrap: wrap;  /* por si la pantalla es chica */
 }
 
 .grupo-radio {
@@ -98,49 +112,97 @@ input[type="radio"] { /* Oculta el input radio original del navegador para poder
 label { /* Estilo visual al label */
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
-    background: var(--fondo-oscuro);
+    background: var(--acento-gris);
     cursor: pointer;
     transition: 0.3s ease;
     font-family: "roboto-mono";
 }
 
 input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el radio correspondiente está seleccionado */
-    background: var(--acento-rosa);
+    background: var(--acento-azul);
     color: white;
 }
 
 /* BOTON GENERAR */
 .boton-generar{
-    background-color: var(--acento-rosa);
+    background-color: var(--acento-azul);
     font-family: "roboto-mono";
-    width: auto;           /* ← en vez de 15rem */
+    font-weight: bold;
+    width: auto;      
     padding: 0.75rem 2rem;
-    height: auto;          /* ← en vez de 4rem fijo */
+    height: auto;
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
 }
 
 .boton-generar:active {
-    background-color: var(--acento-violeta);
+    background-color: var(--acento-azul-oscuro);
+}
+
+/* ANIMACIONES PARA LA PALETA */
+/* Define la animación: la tarjeta arranca invisible y abajo, y sube a su lugar */
+@keyframes entradaTarjeta {
+    from {
+        opacity: 0;           /* arranca transparente */
+        transform: translateY(20px); /* arranca 20px más abajo */
+    }
+    to {
+        opacity: 1;           /* termina visible */
+        transform: translateY(0);    /* termina en su posición normal */
+    }
+}
+
+/* Clase que activa la animación en una tarjeta */
+.tarjeta-animada {
+    animation: entradaTarjeta 0.4s ease forwards;
+    /* 
+    entradaTarjeta → el nombre de nuestro @keyframes
+    0.4s           → dura 0.4 segundos
+    ease           → arranca rápido y frena suave al final
+    forwards       → al terminar, se queda en el estado final (visible)
+    */
+}
+
+/* COTENEDOR PALETA */
+.paletas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    padding: 1rem 4rem;
+}
+
+/* TARJETA DE COLOR */
+.tarjeta-color {
+    font-family: "roboto-mono";
+    height: 10rem;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 0.25rem solid var(--borde-azul-oscuro);
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0.75rem;
 }
 
 /* SWATCH */
 .swatch {
-    border-radius: var(--borde-hueso);
-    overflow: hidden; /* Para que el borde redondeado recorte el contenido */
+    border-radius: var(--borde-azul-oscuro);
+    overflow: hidden;
     border: 1px solid var(--sombra-gris-oscuro);
-    cursor: pointer; /* Manito al pasar por encima */
+    cursor: pointer; /* al pasar por encima manito en modo "seleccionar" */
 }
 
 .swatch:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: 4px 4px 16px -4px var(--sombra-gris-oscuro);
 }
 
 /* FOOTER */
 .footer-flycolor{
-    margin-top: auto; /* Empuja el footer al fondo */
+    margin-top: auto;
     padding: 1.5rem 2rem;
     text-align: center;
     font-size: 0.75rem;
