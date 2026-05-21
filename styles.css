@@ -59,8 +59,11 @@ body{
 
 /* LOGO COLORFLY */
 .logo{
-    width: 12rem;
-    padding: 10px;
+    font-family: "archivo-black";
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--acento-rosa);
+    padding: 1.5rem;
 }
 
 /* H1 */
@@ -198,6 +201,48 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
 .swatch:hover {
     transform: translateY(-4px);
     box-shadow: 4px 4px 16px -4px var(--sombra-gris-oscuro);
+}
+
+/* TOAST */
+.toast {
+    position: fixed;        /* flota sobre todo el contenido */
+    bottom: 2rem;           /* pegado abajo */
+    left: 50%;              /* centrado horizontalmente */
+    transform: translateX(-50%) translateY(150%); /* empieza fuera de pantalla abajo */
+    
+    background-color: var(--acento-azul);
+    color: var(--texto-blanco);
+    font-family: "roboto-mono";
+    font-size: 0.85rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 2rem;
+    
+    transition: transform 0.35s ease; /* la animación de subir/bajar */
+    
+    /* Para que no interfiera con los clicks en la página cuando está oculto */
+    pointer-events: none;
+}
+
+/* Cuando el toast tiene la clase "visible", sube a su posición */
+.toast.visible {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* MENSAJE */
+
+.modo-uso {
+    border: 1px solid var(--acento-azul);
+    color: var(--texto-blanco);
+    font-family: "roboto-mono";
+    font-size: 1rem;
+    display: inline-block;     /* que no ocupe todo el ancho */
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;     /* esquinas redondeadas */
+    white-space: nowrap;       /* que el texto no se corte */
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
 }
 
 /* FOOTER */

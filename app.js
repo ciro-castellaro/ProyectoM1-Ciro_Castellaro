@@ -22,6 +22,22 @@ function hslAHex(h, s, l) {
 }
 
 // =============================================
+// TOAST
+// =============================================
+
+const toast = document.getElementById("toast");
+let temporizadorToast = null;
+
+function mostrarToast() {
+    clearTimeout(temporizadorToast);
+    toast.classList.add("visible");
+
+    temporizadorToast = setTimeout(function() {
+        toast.classList.remove("visible");
+    }, 2000);
+}
+
+// =============================================
 // FUNCIÓN QUE CREA UNA TARJETA DE COLOR
 // =============================================
 
@@ -32,16 +48,22 @@ function crearTarjetaColor(colorHSL, indice) {
     const tarjeta = document.createElement("div");
     tarjeta.classList.add("tarjeta-color");
     tarjeta.classList.add("tarjeta-animada");
-
-    // El delay aumenta con cada tarjeta → efecto de entrada en cascada
     tarjeta.style.animationDelay = `${indice * 0.07}s`;
-
     tarjeta.style.backgroundColor = hex;
+
     tarjeta.innerHTML = `
         <span class="codigo-color codigo-hex">${hex}</span>
         <span class="codigo-color codigo-hsl">${hslTexto}</span>
         <span class="copiar-codigo">Copiar</span>
     `;
+
+    tarjeta.addEventListener("click", function() {
+        const formato = document.querySelector('input[name="tipo-codigo"]:checked').value;
+        const textoCopiar = formato === "hsl" ? hslTexto : hex;
+
+        navigator.clipboard.writeText(textoCopiar);
+        mostrarToast();
+    });
 
     return tarjeta;
 }
