@@ -129,6 +129,7 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
 /* BOTON GENERAR */
 .boton-generar{
     background-color: var(--acento-azul);
+    color: var(--texto-negro);
     font-family: "roboto-mono";
     font-weight: bold;
     width: auto;      
@@ -144,7 +145,6 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
 }
 
 /* ANIMACIONES PARA LA PALETA */
-/* Define la animación: la tarjeta arranca invisible y abajo, y sube a su lugar */
 @keyframes entradaTarjeta {
     from {
         opacity: 0;           /* arranca transparente */
@@ -218,8 +218,6 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
     border-radius: 2rem;
     
     transition: transform 0.35s ease; /* la animación de subir/bajar */
-    
-    /* Para que no interfiera con los clicks en la página cuando está oculto */
     pointer-events: none;
 }
 
