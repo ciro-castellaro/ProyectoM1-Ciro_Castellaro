@@ -3,7 +3,6 @@
     /* Fondos */
     --fondo-negro: hsl(220, 20%, 10%);
 
-
     /* Texto */
     --texto-blanco: hsl(0, 0%, 100%);
     --texto-negro: hsl(222, 30%, 12%);
@@ -12,11 +11,11 @@
     /* Acentos*/
     --acento-azul: hsl(210, 100%, 55%);
     --acento-azul-oscuro: hsl(210, 100%, 45%);
-    --acento-cyan:hsl(200, 35%, 45%);
+    --acento-cyan: hsl(200, 35%, 45%);
     --acento-gris: hsl(220, 4%, 42%);
-    --acento-rosa:hsl(340, 70%, 55%);
-    --acento-verde:hsl(150, 40%, 40%); 
-    --acento-amarillo:hsl(40, 80%, 55%);
+    --acento-rosa: hsl(340, 70%, 55%);
+    --acento-verde: hsl(150, 40%, 40%);
+    --acento-amarillo: hsl(40, 80%, 55%);
 
     /* UI */
     --borde-hueso: hsl(220, 20%, 90%);
@@ -34,10 +33,9 @@
 }
 
 /* BODY */
-body{
+body {
     background-color: var(--fondo-negro);
 }
-
 
 /* CONTENEDOR */
 .contenedor {
@@ -58,7 +56,7 @@ body{
 }
 
 /* LOGO COLORFLY */
-.logo{
+.logo {
     font-family: "archivo-black";
     font-size: 2rem;
     font-weight: bold;
@@ -67,7 +65,7 @@ body{
 }
 
 /* H1 */
-h1{
+h1 {
     font-family: "archivo-black";
     font-size: 3.5rem;
     color: var(--acento-azul);
@@ -76,7 +74,6 @@ h1{
 }
 
 /* HEADER */
-
 .header {
     display: flex;
     flex-direction: column;
@@ -90,9 +87,9 @@ h1{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 2rem;       
+    gap: 2rem;
     padding: 1rem 2rem;
-    flex-wrap: wrap;  /* por si la pantalla es chica */
+    flex-wrap: wrap;
 }
 
 .grupo-radio {
@@ -102,17 +99,17 @@ h1{
     gap: 0.5rem;
 }
 
-.grupo-titulo{
+.grupo-titulo {
     font-family: "roboto-mono";
     margin-right: 0.25rem;
-    white-space: nowrap; /* evita que el título se parta en dos líneas */
+    white-space: nowrap;
 }
 
-input[type="radio"] { /* Oculta el input radio original del navegador para poder diseñarlo manualmente */
-    display: none; 
+input[type="radio"] {
+    display: none;
 }
 
-label { /* Estilo visual al label */
+label {
     padding: 0.5rem 1rem;
     border-radius: 0.3rem;
     background: var(--acento-gris);
@@ -121,18 +118,18 @@ label { /* Estilo visual al label */
     font-family: "roboto-mono";
 }
 
-input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el radio correspondiente está seleccionado */
+input[type="radio"]:checked + label {
     background: var(--acento-azul);
     color: white;
 }
 
 /* BOTON GENERAR */
-.boton-generar{
+.boton-generar {
     background-color: var(--acento-azul);
     color: var(--texto-negro);
     font-family: "roboto-mono";
     font-weight: bold;
-    width: auto;      
+    width: auto;
     padding: 0.75rem 2rem;
     height: auto;
     border: none;
@@ -147,27 +144,20 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
 /* ANIMACIONES PARA LA PALETA */
 @keyframes entradaTarjeta {
     from {
-        opacity: 0;           /* arranca transparente */
-        transform: translateY(20px); /* arranca 20px más abajo */
+        opacity: 0;
+        transform: translateY(20px);
     }
     to {
-        opacity: 1;           /* termina visible */
-        transform: translateY(0);    /* termina en su posición normal */
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Clase que activa la animación en una tarjeta */
 .tarjeta-animada {
     animation: entradaTarjeta 0.4s ease forwards;
-    /* 
-    entradaTarjeta → el nombre de nuestro @keyframes
-    0.4s           → dura 0.4 segundos
-    ease           → arranca rápido y frena suave al final
-    forwards       → al terminar, se queda en el estado final (visible)
-    */
 }
 
-/* COTENEDOR PALETA */
+/* CONTENEDOR PALETA */
 .paletas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -188,6 +178,43 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
     flex-direction: column;
     justify-content: flex-end;
     padding: 0.75rem;
+    transition: border-color 0.25s ease;
+}
+
+.tarjeta-bloqueada {
+    border-color: white;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+}
+
+/* BOTÓN CANDADO */
+.boton-candado {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.35);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0;    /* invisible por defecto */
+    transition: opacity 0.2s ease, transform 0.15s ease;
+    padding: 0.3rem 0.35rem;
+    border-radius: 0.35rem;
+    line-height: 1;
+    backdrop-filter: blur(4px);
+}
+
+.tarjeta-color:hover .boton-candado {
+    opacity: 1;
+}
+
+.candado-activo {
+    opacity: 1 !important;
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+.boton-candado:active {
+    transform: scale(0.88);
 }
 
 /* SWATCH */
@@ -195,7 +222,7 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
     border-radius: var(--borde-azul-oscuro);
     overflow: hidden;
     border: 1px solid var(--sombra-gris-oscuro);
-    cursor: pointer; /* al pasar por encima manito en modo "seleccionar" */
+    cursor: pointer;
 }
 
 .swatch:hover {
@@ -205,50 +232,46 @@ input[type="radio"]:checked + label { /* Cambia el estilo del label cuando el ra
 
 /* TOAST */
 .toast {
-    position: fixed;        /* flota sobre todo el contenido */
-    bottom: 2rem;           /* pegado abajo */
-    left: 50%;              /* centrado horizontalmente */
-    transform: translateX(-50%) translateY(150%); /* empieza fuera de pantalla abajo */
-    
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(150%);
+
     background-color: var(--acento-azul);
     color: var(--texto-blanco);
     font-family: "roboto-mono";
     font-size: 0.85rem;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
-    
-    transition: transform 0.35s ease; /* la animación de subir/bajar */
+
+    transition: transform 0.35s ease;
     pointer-events: none;
 }
 
-/* Cuando el toast tiene la clase "visible", sube a su posición */
 .toast.visible {
     transform: translateX(-50%) translateY(0);
 }
 
 /* MENSAJE */
-
 .modo-uso {
     border: 1px solid var(--acento-azul);
     color: var(--texto-blanco);
     font-family: "roboto-mono";
     font-size: 1rem;
-    display: inline-block;     /* que no ocupe todo el ancho */
+    display: inline-block;
     padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;     /* esquinas redondeadas */
-    white-space: nowrap;       /* que el texto no se corte */
+    border-radius: 0.5rem;
+    white-space: nowrap;
     display: flex;
     align-items: center;
     flex-direction: column;
-
 }
 
 /* FOOTER */
-.footer-flycolor{
+.footer-flycolor {
     margin-top: auto;
     padding: 1.5rem 2rem;
     text-align: center;
     font-size: 0.75rem;
     color: var(--texto-gris);
 }
-
